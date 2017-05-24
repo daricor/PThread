@@ -17,15 +17,14 @@ pthread_t camions;
 
 void* cycleCamion(void* arg)
 {
-
-
     srand(time(0));
+
 
     unsigned max_sleep_chargement = 30;
     unsigned max_sleep_pesee = 10;
     unsigned max_couleur = 15;
 
-    unsigned min_rand = 0;
+    unsigned min_rand = 1;
 
     int nombre_quais_libres;
     int pesee_libre;
@@ -33,7 +32,7 @@ void* cycleCamion(void* arg)
     pthread_t selfThread = pthread_self();
     int selfIdThread = (int) selfThread;
 
-    int couleur_ale = (rand() % (max_couleur - min_rand + 1)) + min_rand;
+    unsigned couleur_ale = (rand() % (max_couleur - min_rand + 1)) + min_rand;
 
     unsigned sleep_chargement = (rand() % (max_sleep_chargement - min_rand + 1)) + min_rand;
     unsigned sleep_pesee = (rand() % (max_sleep_pesee - min_rand + 1)) + min_rand;
@@ -114,9 +113,21 @@ void set_color(int t, int f) // couleur affichage en console (t =text f= fond co
 int main(int argc, char **argv)
 {
 
+    unsigned max_new_camion = 15;
+    unsigned min_rand = 0;
+    unsigned nb_camion = 0;
+
 
 
     init_cycle(INIT_CAMIONS);
+
+    while (nb_camion <= 50)
+    {
+        unsigned time_new_camion = (rand() % (max_new_camion - min_rand + 1)) + min_rand;
+        sleep(time_new_camion);
+        nouveauCamion();
+    }
+
 
     int status;
     pthread_join(camions, (void**) &status);
