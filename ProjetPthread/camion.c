@@ -61,6 +61,8 @@ void* cycleCamion(void* arg)
 
     sleep(sleep_pesee);
 
+    take_meteo(selfIdThread, couleur_ale);
+
     set_color(couleur_ale, 0);
     printf("N-%i : Fin du cycle\n", selfIdThread);
 

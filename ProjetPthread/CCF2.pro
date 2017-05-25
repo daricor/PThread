@@ -5,4 +5,5 @@ CONFIG -= qt
 
 SOURCES += main.c \
     camion.c \
-    destination.c
+    destination.c \
+    meteo.c

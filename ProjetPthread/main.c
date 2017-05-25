@@ -13,18 +13,25 @@
 
 pthread_t camions;
 pthread_t t_dest;
+pthread_t t_meteo;
 
+sem_t m_dest;
 sem_t m_pesee;
+sem_t m_meteo;
+
 sem_t s_quai;
 sem_t s_dest;
-sem_t m_dest;
 
+char* meteo = "Inconnue";
 char* destinations_list[NB_DEST];
+
 const char* DEST_PROPROSEES[] = {"MONTPELLIER", "MARSEILLE", "LYON", "PARIS", "BORDEAUX", "ARRAS"};
+const char* METEO_PROPROSEES[] = {"Soleil", "Pluie", "Neige", "Nuageux", "Nuit"};
 
 
 #include "camion.c"
 #include "destination.c"
+#include "meteo.c"
 
 
 
@@ -43,6 +50,7 @@ int main(int argc, char **argv)
     unsigned min_rand = 0;
 
     init_destinations();
+    init_meteo();
     init_cycle_camions();
 
 
